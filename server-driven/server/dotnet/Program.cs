@@ -19,8 +19,8 @@ var app = builder.Build();
 
 StripeConfiguration.AppInfo = new AppInfo
 {
-    Name = "stripe-samples/terminal/server-driven",
-    Url = "https://github.com/stripe-samples",
+    Name = "fivetendev/stripe-terminal/server-driven",
+    Url = "https://github.com/fivetendev/stripe-terminal",
     Version = "0.0.1",
 };
 
@@ -53,7 +53,7 @@ app.MapPost("create-payment-intent", async (CreatePaymentIntentRequest req, Paym
         var options = new PaymentIntentCreateOptions
         {
             Amount = req.Amount,
-            Currency = "usd",
+            Currency = builder.Configuration["PAYMENT_INTENT_CURRENCY"],
             PaymentMethodTypes = new List<string> { "card_present" },
             CaptureMethod = "manual",
         };
